@@ -65,5 +65,5 @@ jobs:
 
     - name: Rodar script de notificação
       run: |
-        pip install smtplib email-validator
+        pip install email-validator
         python scripts/send_email.py
