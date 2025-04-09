@@ -58,8 +58,8 @@ jobs:
     - name: Armazenar artefatos do build
       uses: actions/upload-artifact@v3
       with:
-        name: pacote-poetry
-        path: dist/*
+        name: relatorio-testes
+        path: ./htmlcov  # ou outro caminho do seu relatório
 
   notificar:
     name: Notificar por e-mail
