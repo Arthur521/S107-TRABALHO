@@ -49,12 +49,6 @@ jobs:
         export PATH="$HOME/.local/bin:$PATH"
         poetry build
 
-    - name: Armazenar artefatos do build
-      uses: actions/upload-artifact@v3
-      with:
-        name: relatorio-testes
-        path: ./htmlcov  # ou outro caminho do seu relatório
-
   notificar:
     name: Notificar por e-mail
     runs-on: ubuntu-latest
