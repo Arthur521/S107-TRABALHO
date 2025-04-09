@@ -28,12 +28,6 @@ jobs:
       run: |
         export PATH="$HOME/.local/bin:$PATH"
         poetry run pytest --junitxml=report.xml
-        
-    - name: Salvar relatório de testes
-      uses: actions/upload-artifact@v3
-      with:
-        name: relatorio-testes
-        path: report.xml
 
   build:
     name: Empacotamento do projeto
