@@ -1,0 +1,81 @@
+name: CI Poetry Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  EMAIL_DESTINO: ${{ secrets.EMAIL_DESTINO }}
+
+jobs:
+  testes:
+    name: Rodar testes
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Clonar repositório
+      uses: actions/checkout@v3
+
+    - name: Instalar dependências
+      run: |
+        curl -sSL https://install.python-poetry.org | python3 -
+        export PATH="$HOME/.local/bin:$PATH"
+        poetry install
+
+    - name: Executar testes com pytest
+      run: |
+        export PATH="$HOME/.local/bin:$PATH"
+        poetry run pytest --junitxml=report.xml
+
+    - name: Salvar relatório de testes
+      uses: actions/upload-artifact@v3
+      with:
+        name: relatorio-testes
+        path: report.xml
+
+  build:
+    name: Empacotamento do projeto
+    runs-on: ubuntu-latest
+    needs: testes
+
+    steps:
+    - name: Clonar repositório
+      uses: actions/checkout@v3
+
+    - name: Instalar dependências
+      run: |
+        curl -sSL https://install.python-poetry.org | python3 -
+        export PATH="$HOME/.local/bin:$PATH"
+        poetry install
+
+    - name: Empacotar projeto
+      run: |
+        export PATH="$HOME/.local/bin:$PATH"
+        poetry build
+
+    - name: Armazenar artefatos do build
+      uses: actions/upload-artifact@v3
+      with:
+        name: pacote-poetry
+        path: dist/*
+
+  notificar:
+    name: Notificar por e-mail
+    runs-on: ubuntu-latest
+    needs: [testes, build]  # Pode rodar após os dois
+
+    steps:
+    - name: Clonar repositório
+      uses: actions/checkout@v3
+
+    - name: Instalar Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+
+    - name: Rodar script de notificação
+      run: |
+        pip install smtplib email-validator
+        python scripts/send_email.py
