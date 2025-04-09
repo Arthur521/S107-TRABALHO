@@ -1,18 +1,16 @@
-[project]
+[tool.poetry]
 name = "projetoc214"
 version = "0.1.0"
 description = ""
-authors = [
-    {name = "Arthur521",email = "arthurassis@hotmail.com.br"}
-]
+authors = ["Arthur521 <arthurassis@hotmail.com.br>"]
 readme = "README.md"
-requires-python = ">=3.12"
-dependencies = [
-]
-
-[tool.poetry]
 packages = [{include = "projetoc214", from = "src"}]
 
+[tool.poetry.dependencies]
+python = "^3.12"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.0.0"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

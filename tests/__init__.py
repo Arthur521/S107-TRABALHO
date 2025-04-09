@@ -1,4 +1,4 @@
-from src.aluno import Aluno
-from src.aula import Aula
-from src.professor import Professor
+from src.projetos107.aluno import Aluno
+from src.projetos107.aula import Aula
+from src.projetos107.professor import Professor
 

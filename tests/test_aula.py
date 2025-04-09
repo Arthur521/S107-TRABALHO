@@ -1,8 +1,8 @@
 import pytest
 
-from src import Aluno
-from src import Professor
-from src import Aula
+from src.projetos107 import Aluno
+from src.projetos107 import Professor
+from src.projetos107 import Aula
 
 def test_criar_aula_com_assunto_valido():
     professor = Professor("Carlos", 1)

@@ -1,6 +1,6 @@
-from src import Aluno
-from src import Professor
-from src import Aula
+from src.projetos107 import Aluno
+from src.projetos107 import Professor
+from src.projetos107 import Aula
 
 professor = Professor("Lucas", 1)
 aluno1 = Aluno("Maria", 0)
