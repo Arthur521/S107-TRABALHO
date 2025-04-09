@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "projetoc214"
+name = "projetos107"
 version = "0.1.0"
 description = ""
 authors = ["Arthur521 <arthurassis@hotmail.com.br>"]
 readme = "README.md"
-packages = [{include = "projetoc214", from = "src"}]
+packages = [{include = "projetos107", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.12"
